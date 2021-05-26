@@ -1,0 +1,24 @@
+# Left Factoring
+s = input("Enter the production: ")
+
+a = []
+l = []
+n = ""
+
+# Find productions
+a = s.split('->')
+l = a[1].split('|')
+
+# Find common prefixes
+for i in range(0,len(l)-1):
+    for j in range(0,min(len(l[i]),len(l[i+1]))):
+        if(l[i][j] == l[i+1][j]):
+            if l[i][j] not in n:
+                n = n + l[i][j]
+
+# Print
+print(a[0] + '->' + n + "A'")
+m = a[1].split(n)
+print("A'-> e",end="")
+for i in range(1,len(m)):
+    print(m[i] , end="")

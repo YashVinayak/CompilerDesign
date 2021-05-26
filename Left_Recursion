@@ -1,0 +1,38 @@
+# Left Recursion
+
+# Eliminate left recursion using the following rules
+# A->Aα1| Aα2 | . . . . . |Aαm
+# A->β1| β2| . . . . .| βn
+# Then replace it by
+# A’-> βi A’ i=1,2,3,…..m
+# A’-> αj A’ j=1,2,3,…..n
+# A’-> Ɛ
+
+s = input("Enter the grammar:")
+
+# Check if left recursion is possible
+if s[0] != s[3]:
+    print("No left recursion")
+
+if s[0] == s[3]:
+    
+    x = s[0] #Parent nonterminal
+    l = len(s)
+    a = ''
+    c = ''
+    b = s[0] + "'"
+
+    # Find based on rules
+    for i in range(l):
+        if s[i] == "|":
+            a = a + s[i+1:]
+
+    for i in range(l):
+        if s[i] == "|":
+            c = c + s[4:i]
+
+    a = a + b
+    c = c + b
+    print(s[0],"->",a)
+    print(b,"->",c)
+    print(b,"->|e")
